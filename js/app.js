@@ -328,8 +328,7 @@ function inicializarModales() {
     container.innerHTML = 
         AnimalesModal.getHTML() +
         VentasModal.getVentaHTML() +
-        VentasModal.getClienteHTML() +
-        // DietasModal eliminado - se usa modal inline de DietasSection
+        VentasModal.getClienteHTML();
     
     modalesInicializados = true;
 }
@@ -344,7 +343,6 @@ function inicializarFechas() {
 window.guardarAnimal = () => AnimalesModal.guardar();
 window.guardarVenta = () => VentasModal.guardarVenta();
 window.guardarCliente = () => VentasModal.guardarCliente();
-// Funciones de DietasModal eliminadas - se usa modal inline de DietasSection
 
 // Funciones para ficha de animal
 window.switchFichaTab = (tab) => AnimalesModal.switchFichaTab(tab);
