@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeedPro Local - Sistema Integral de Gestión de Feedlot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="css/telegram-ordenes.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/tables.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/dietas.css">
+    <link rel="stylesheet" href="css/quick-actions.css">
+    <link rel="stylesheet" href="css/gastos.css">
+    <link rel="stylesheet" href="css/proyeccion.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <div class="logo-mark">F</div>
+                <div class="logo-text">FeedPro<small>Sistema Integral de Gestión</small></div>
+            </div>
+            
+            <ul class="nav-menu">
+                <!-- PRINCIPAL -->
+                <li class="nav-item">
+                    <a class="nav-link active" onclick="navigate('dashboard')">
+                        <span class="nav-icon"><span class="icon-svg icon-dashboard"></span></span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+
+                <!-- OPERACIONES DIARIAS -->
+                <li class="nav-separator" data-label="Operaciones"></li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('suministro')">
+                        <span class="nav-icon"><span class="icon-svg icon-suministro"></span></span>
+                        <span class="nav-text">Suministro</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('animales')">
+                        <span class="nav-icon"><span class="icon-svg icon-animales"></span></span>
+                        <span class="nav-text">Animales</span>
+                        <span class="nav-badge" id="badgeAnimales">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('corrales')">
+                        <span class="nav-icon"><span class="icon-svg icon-corrales"></span></span>
+                        <span class="nav-text">Corrales</span>
+                    </a>
+                </li>
+
+                <!-- PLANIFICACIÓN -->
+                <li class="nav-separator" data-label="Planificación"></li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('dietas')">
+                        <span class="nav-icon"><span class="icon-svg icon-dietas"></span></span>
+                        <span class="nav-text">Dietas</span>
+                        <span class="nav-badge" id="badgeDietas" style="display:none">Nuevo</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('insumos')">
+                        <span class="nav-icon"><span class="icon-svg icon-insumos"></span></span>
+                        <span class="nav-text">Insumos</span>
+                        <span class="nav-badge" id="badgeStock" style="display:none">!</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('sanidad')">
+                        <span class="nav-icon"><span class="icon-svg icon-sanidad"></span></span>
+                        <span class="nav-text">Sanidad</span>
+                        <span class="nav-badge" id="badgeSanidad" style="display:none">0</span>
+                    </a>
+                </li>
+
+                <!-- ANÁLISIS Y GESTIÓN -->
+                <li class="nav-separator" data-label="Análisis"></li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('comercializacion')">
+                        <span class="nav-icon"><span class="icon-svg icon-comercializacion"></span></span>
+                        <span class="nav-text">Comercialización</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('proyeccion')">
+                        <span class="nav-icon"><span class="icon-svg icon-proyeccion"></span></span>
+                        <span class="nav-text">Proyección</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('reportes')">
+                        <span class="nav-icon"><span class="icon-svg icon-reportes"></span></span>
+                        <span class="nav-text">Reportes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('gastos')">
+                        <span class="nav-icon"><span class="icon-svg icon-gastos"></span></span>
+                        <span class="nav-text">Resumen Gastos</span>
+                    </a>
+                </li>
+
+                <!-- CONFIGURACIÓN -->
+                <li class="nav-separator" data-label="Configuración"></li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('personal')">
+                        <span class="nav-icon"><span class="icon-svg icon-personal"></span></span>
+                        <span class="nav-text">Personal</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="navigate('administracion')">
+                        <span class="nav-icon"><span class="icon-svg icon-administracion"></span></span>
+                        <span class="nav-text">Administración</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="establecimiento-info">
+                    <div class="label">Establecimiento</div>
+                    <div class="nombre">La Esperanza</div>
+                    <div class="capacidad">Capacidad: 5,000 cabezas</div>
+                </div>
+                <div class="version-info">
+                    v2.0 Local<br>
+                    Guardado: <span id="lastBackup">Hoy</span>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-title">
+                    <h2 id="pageTitle">Dashboard General</h2>
+                    <div class="breadcrumb" id="breadcrumb">Inicio / Dashboard</div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="statAnimales">0</div>
+                        <div class="stat-label">Activos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statIngresos">$0</div>
+                        <div class="stat-label">Ventas Mes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statConsumo">0</div>
+                        <div class="stat-label">Kg Hoy</div>
+                    </div>
+                    
+                    <!-- Botón Universal de Acciones Rápidas -->
+                    <div class="quick-actions-container">
+                        <button class="btn-quick-actions" onclick="QuickActions.toggle()" title="Acciones Rápidas">
+                            <span>⚡</span>
+                            <span>Nuevo</span>
+                        </button>
+                        <div class="quick-actions-menu hidden" id="quickActionsMenu">
+                            <div class="quick-actions-header">
+                                <strong>⚡ Acciones Rápidas</strong>
+                                <span>Accesos directos a operaciones frecuentes</span>
+                            </div>
+                            <div class="quick-actions-grid">
+                                <button class="quick-action-item" onclick="QuickActions.nuevaCompra()">
+                                    <span class="quick-action-icon" style="background: #e8f5e9; color: #2e7d32;">🛒</span>
+                                    <div class="quick-action-text">
+                                        <strong>Compra de Animales</strong>
+                                        <span>Registrar nueva compra de ganado</span>
+                                    </div>
+                                </button>
+                                <button class="quick-action-item" onclick="QuickActions.nuevaVenta()">
+                                    <span class="quick-action-icon" style="background: #fff3e0; color: #e65100;">💰</span>
+                                    <div class="quick-action-text">
+                                        <strong>Venta de Animales</strong>
+                                        <span>Registrar venta o envío a faena</span>
+                                    </div>
+                                </button>
+                                <button class="quick-action-item" onclick="QuickActions.nuevoMovimiento()">
+                                    <span class="quick-action-icon" style="background: #e3f2fd; color: #1565c0;">🔄</span>
+                                    <div class="quick-action-text">
+                                        <strong>Mover Animales</strong>
+                                        <span>Traslado entre corrales</span>
+                                    </div>
+                                </button>
+                                <button class="quick-action-item" onclick="QuickActions.nuevaSesionSuministro()">
+                                    <span class="quick-action-icon" style="background: #f3e5f5; color: #7b1fa2;">🚜</span>
+                                    <div class="quick-action-text">
+                                        <strong>Sesión de Suministro</strong>
+                                        <span>Iniciar alimentación (Bunk)</span>
+                                    </div>
+                                </button>
+                                <button class="quick-action-item" onclick="QuickActions.nuevoTratamiento()">
+                                    <span class="quick-action-icon" style="background: #fce4ec; color: #c2185b;">💉</span>
+                                    <div class="quick-action-text">
+                                        <strong>Tratamiento Sanitario</strong>
+                                        <span>Vacuna o tratamiento</span>
+                                    </div>
+                                </button>
+                                <button class="quick-action-item" onclick="QuickActions.nuevaOrdenCompra()">
+                                    <span class="quick-action-icon" style="background: #e0f2f1; color: #00695c;">📋</span>
+                                    <div class="quick-action-text">
+                                        <strong>Orden de Compra</strong>
+                                        <span>Insumos o alimentos</span>
+                                    </div>
+                                </button>
+                                <button class="quick-action-item" onclick="QuickActions.registrarPesaje()">
+                                    <span class="quick-action-icon" style="background: #fff8e1; color: #f57f17;">⚖️</span>
+                                    <div class="quick-action-text">
+                                        <strong>Registrar Pesaje</strong>
+                                        <span>Control de peso de animales</span>
+                                    </div>
+                                </button>
+                                <button class="quick-action-item" onclick="QuickActions.nuevoAnimal()">
+                                    <span class="quick-action-icon" style="background: #efebe9; color: #4e342e;">🐂</span>
+                                    <div class="quick-action-text">
+                                        <strong>Alta de Animal</strong>
+                                        <span>Individual o lote</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Secciones dinámicas -->
+            <section id="dashboard" class="section"></section>
+            <section id="animales" class="section hidden"></section>
+            <section id="sanidad" class="section hidden"></section>
+            <section id="insumos" class="section hidden"></section>
+            <section id="dietas" class="section hidden"></section>
+            <section id="suministro" class="section hidden"></section>
+            <section id="corrales" class="section hidden"></section>
+            <section id="comercializacion" class="section hidden"></section>
+            <section id="personal" class="section hidden"></section>
+            <section id="gastos" class="section hidden"></section>
+            <section id="reportes" class="section hidden"></section>
+            <section id="proyeccion" class="section hidden"></section>
+            <section id="administracion" class="section hidden"></section>
+        </main>
+    </div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Modales Container -->
+    <div id="modals-container"></div>
+
+    <!-- Scripts -->
+    <!-- SheetJS para importar/exportar Excel -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/hardware.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/charts.js"></script>
+    
+    <!-- Secciones -->
+    <script src="js/sections/dashboard.js"></script>
+    <script src="js/sections/animales.js"></script>
+    <script src="js/sections/dietas.js"></script>
+    <script src="js/sections/suministro.js"></script>
+    <script src="js/sections/insumos.js"></script>
+    <script src="js/sections/sanidad.js"></script>
+    <script src="js/sections/corrales.js"></script>
+    <script src="js/sections/personal.js"></script>
+    <script src="js/sections/gastos.js"></script>
+    <script src="js/sections/comercializacion.js"></script>
+    <script src="js/data-demo.js"></script>
+    <script src="js/sections/reportes.js"></script>
+    <script src="js/sections/proyeccion.js"></script>
+    <script src="js/sections/administracion.js"></script>
+    
+    <!-- Modales -->
+    <script src="js/modals/shareModal.js"></script>
+    <script src="js/modals/animalesModal.js"></script>
+    <script src="js/modals/ventasModal.js"></script>
+
+    <!-- Funcionalidades Avanzadas -->
+    <script src="js/advanced-features.js"></script>
+    <script src="js/quick-actions.js"></script>
+    
+    <!-- App Principal -->
+    <script src="js/app.js"></script>
+
+<script src="js/telegram-ordenes.js"></script>
+</body>
+</html>
