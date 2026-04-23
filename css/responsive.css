@@ -1,0 +1,342 @@
+/* ========== SIDEBAR OVERLAY (mobile) ========== */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: calc(var(--z-sidebar) - 1);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* ========== WEATHER WIDGET ========== */
+.weather-widget {
+    background: linear-gradient(135deg, #3a5683 0%, #6B4423 100%);
+    color: white;
+    border-radius: var(--border-radius-xl);
+    padding: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2xl);
+    flex-wrap: wrap;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.weather-icon {
+    font-size: 48px;
+    line-height: 1;
+}
+
+.weather-temp {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+}
+
+.weather-desc {
+    font-size: var(--font-size-sm);
+    opacity: 0.85;
+    margin-top: 4px;
+}
+
+.weather-details {
+    display: flex;
+    gap: var(--space-2xl);
+    flex-wrap: wrap;
+}
+
+.weather-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.weather-label {
+    font-size: var(--font-size-xs);
+    opacity: 0.75;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.weather-value {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .weather-widget {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-lg);
+        gap: var(--space-lg);
+    }
+
+    .weather-temp {
+        font-size: var(--font-size-3xl);
+    }
+
+    .weather-icon {
+        font-size: 36px;
+    }
+
+    .weather-details {
+        gap: var(--space-lg);
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* ========== KPI CARDS RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .kpi-value {
+        font-size: var(--font-size-2xl);
+    }
+
+    .kpi-card {
+        padding: var(--space-lg);
+    }
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+    .sidebar,
+    .btn,
+    .modal-overlay,
+    .toast-container,
+    .menu-toggle {
+        display: none !important;
+    }
+
+    .main-content {
+        margin-left: 0;
+        max-width: 100%;
+    }
+
+    .card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid var(--border-dark);
+    }
+}
+
+/* ========== TABLET ADJUSTMENTS ========== */
+@media (max-width: 1024px) {
+    .diet-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ========== MOBILE (768px) ========== */
+@media (max-width: 768px) {
+
+    /* Menú toggle más grande y accesible */
+    .menu-toggle {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+
+    /* Search box ancho completo */
+    .search-box {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    /* Filters bar apilados */
+    .filters-bar {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .filters-bar > * {
+        width: 100%;
+    }
+
+    .filters-bar select,
+    .filters-bar input {
+        width: 100%;
+    }
+
+    /* Tabla: padding reducido para que entre más info */
+    th {
+        padding: 10px 8px;
+        font-size: 11px;
+    }
+
+    td {
+        padding: 10px 8px;
+        font-size: var(--font-size-sm);
+    }
+
+    /* Columnas opcionales: ocultar en mobile */
+    .col-optional {
+        display: none;
+    }
+
+    /* Botones de tabla más compactos pero tapeables */
+    .table-actions {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .table-actions .btn {
+        min-height: 36px;
+        padding: 6px 10px;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    /* Cards con menos padding */
+    .card {
+        padding: var(--space-lg);
+    }
+
+    /* Inputs: font-size 16px previene zoom automático en iOS */
+    input:not([type="checkbox"]):not([type="radio"]),
+    select,
+    textarea {
+        font-size: 16px !important;
+        min-height: 44px;
+    }
+
+    /* Botones más grandes para touch */
+    .btn {
+        min-height: 44px;
+        padding: var(--space-md) var(--space-xl);
+    }
+
+    .btn-sm {
+        min-height: 36px;
+        padding: 6px 12px;
+    }
+
+    /* KPI cards en 2 columnas en tablet/mobile grande */
+    .grid-kpi {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Card header apilado en pantallas chicas */
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    .card-header .btn,
+    .card-header .btn-group {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ========== MOBILE PEQUEÑO (480px) ========== */
+@media (max-width: 480px) {
+    :root {
+        --space-3xl: 20px;
+        --space-2xl: 16px;
+        --space-xl: 12px;
+    }
+
+    /* KPI cards en 1 columna en celulares chicos */
+    .grid-kpi {
+        grid-template-columns: 1fr !important;
+    }
+
+    .header-stats {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .stat-card {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .modal {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: var(--space-lg);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ingredient-row {
+        grid-template-columns: 1fr;
+    }
+
+    .ingredient-row > * {
+        grid-column: 1 / -1;
+    }
+
+    .cost-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .diet-tabs,
+    .tabs {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .diet-tab,
+    .tab {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .toast {
+        min-width: auto;
+        width: calc(100vw - 40px);
+    }
+
+    .toast-container {
+        left: var(--space-md);
+        right: var(--space-md);
+    }
+
+    /* Tabla: texto más chico y padding mínimo */
+    th {
+        padding: 8px 6px;
+        font-size: 10px;
+    }
+
+    td {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+
+    /* Ocultar columnas poco importantes en celular chico */
+    .col-hide-xs {
+        display: none;
+    }
+}

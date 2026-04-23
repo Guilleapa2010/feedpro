@@ -1,0 +1,114 @@
+/* ========================================
+   ICONOS SVG PERSONALIZADOS - ESTILO FARMING
+   ======================================== */
+
+/* Sistema de iconos base */
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* NAVEGACIÓN - Iconos principales */
+
+/* Dashboard */
+.icon-dashboard {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z'/%3E%3C/svg%3E");
+}
+
+/* Tractor/Suministro */
+.icon-suministro {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12h12'/%3E%3Cpath d='M15 5v14'/%3E%3Ccircle cx='5.5' cy='18.5' r='2.5'/%3E%3Ccircle cx='18.5' cy='18.5' r='2.5'/%3E%3Cpath d='M3 12V7a2 2 0 0 1 2-2h3'/%3E%3Cpath d='M15 5h4a2 2 0 0 1 2 2v6'/%3E%3C/svg%3E");
+}
+
+/* Vaca/Animales */
+.icon-animales {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2s-2 .9-2 2v6c0 1.1.9 2 2 2z'/%3E%3Cpath d='M20 16c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2s2 .9 2 2v6c0 1.1-.9 2-2 2z'/%3E%3Cpath d='M6 9h12v8H6z'/%3E%3Cpath d='M8 18v3M16 18v3M10 9V6M14 9V6'/%3E%3C/svg%3E");
+}
+
+/* Corral/Target */
+.icon-corrales {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Cpath d='M3 9h18M3 15h18M9 3v18M15 3v18'/%3E%3C/svg%3E");
+}
+
+/* Hojas/Dietas */
+.icon-dietas {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z'/%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3Cpath d='M8 8h8M8 16h8'/%3E%3C/svg%3E");
+}
+
+/* Granos/Insumos */
+.icon-insumos {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5z'/%3E%3Cpath d='M2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E");
+}
+
+/* Jeringa/Sanidad */
+.icon-sanidad {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 2l4 4-8 8-4-4 8-8z'/%3E%3Cpath d='M10 10L3 17c-1 1-1 3 0 4s3 1 4 0l7-7'/%3E%3Cpath d='M9 14l1 1'/%3E%3C/svg%3E");
+}
+
+/* Dinero/Comercialización */
+.icon-comercializacion {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8'/%3E%3Cpath d='M12 18V6'/%3E%3C/svg%3E");
+}
+
+/* Calendario/Proyección */
+.icon-proyeccion {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'/%3E%3Cpath d='M16 2v4M8 2v4M3 10h18'/%3E%3Cpath d='M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01'/%3E%3C/svg%3E");
+}
+
+/* Gráficos/Reportes */
+.icon-reportes {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 3v18h18'/%3E%3Cpath d='M18 17V9M13 17v-4M8 17v-2'/%3E%3C/svg%3E");
+}
+
+/* Billete/Gastos */
+.icon-gastos {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='6' width='20' height='12' rx='2'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M6 12h.01M18 12h.01'/%3E%3C/svg%3E");
+}
+
+/* Personas/Personal */
+.icon-personal {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75'/%3E%3C/svg%3E");
+}
+
+/* Engranaje/Administración */
+.icon-administracion {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.4 4.4l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.4-4.4l4.2-4.2'/%3E%3C/svg%3E");
+}
+
+/* VARIANTES DE COLOR PARA CONTEXTOS */
+
+/* Iconos en navegación activa (oscuros) */
+.nav-link.active .icon-svg {
+    filter: brightness(0) saturate(100%) invert(27%) sepia(19%) saturate(1337%) hue-rotate(359deg) brightness(93%) contrast(90%);
+}
+
+/* Iconos en headers de cards */
+.card-icon .icon-svg {
+    filter: brightness(0) invert(1);
+}
+
+/* Tamaño para nav-icon */
+.nav-icon .icon-svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Tamaño para headers */
+.card-icon .icon-svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Animación hover */
+.nav-link:hover .icon-svg {
+    animation: iconPulse 0.5s ease;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}

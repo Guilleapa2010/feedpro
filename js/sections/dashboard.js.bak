@@ -1,0 +1,147 @@
+/**
+ * SECCIÓN DASHBOARD
+ */
+
+const DashboardSection = {
+    charts: {},
+    
+    render() {
+        const section = document.getElementById('dashboard');
+        
+        section.innerHTML = `
+            <div class="grid-4">
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Inventario Total</span>
+                        <span class="kpi-trend trend-up">↑ 12%</span>
+                    </div>
+                    <div class="kpi-value" id="kpiInventario">0</div>
+                    <div class="kpi-subtitle">Cabezas en feedlot</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Peso Promedio</span>
+                        <span class="kpi-trend trend-up">↑ 5%</span>
+                    </div>
+                    <div class="kpi-value" id="kpiPeso">450<span style="font-size:16px">kg</span></div>
+                    <div class="kpi-subtitle">GDP: 1.8 kg/día</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Eficiencia</span>
+                        <span class="kpi-trend trend-down">↓ 3%</span>
+                    </div>
+                    <div class="kpi-value" id="kpiEficiencia">6.2<span style="font-size:16px">:1</span></div>
+                    <div class="kpi-subtitle">Conversión alimenticia</div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Margen Bruto</span>
+                        <span class="kpi-trend trend-up">↑ 8%</span>
+                    </div>
+                    <div class="kpi-value" id="kpiMargen">$180</div>
+                    <div class="kpi-subtitle">Por animal encerrado</div>
+                </div>
+            </div>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <div class="card-icon">📊</div>
+                            Consumo de Alimentos
+                        </h3>
+                        <select class="form-select" style="width: auto;">
+                            <option>Últimos 7 días</option>
+                            <option>Último mes</option>
+                            <option>Último año</option>
+                        </select>
+                    </div>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="consumoChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <div class="card-icon">🐂</div>
+                            Distribución y Alertas
+                        </h3>
+                    </div>
+                    <div style="height: 180px; position: relative; margin-bottom: 15px;">
+                        <canvas id="razasChart"></canvas>
+                    </div>
+                    <div id="alertasContainer" style="max-height: 150px; overflow-y: auto;">
+                        <!-- Las alertas se generarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <div class="card-icon">📋</div>
+                        Actividad Reciente
+                    </h3>
+                    <button class="btn btn-sm btn-secondary" onclick="navigate('reportes')">Ver todo</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha/Hora</th>
+                                <th>Módulo</th>
+                                <th>Acción</th>
+                                <th>Usuario</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaActividad">
+                            <tr><td colspan="5" class="text-center">Cargando...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+        
+        this.updateKPIs();
+        this.initCharts();
+    },
+    
+    updateKPIs() {
+        const totalAnimales = AppData.animales.filter(a => a.estado !== 'finalizado').length;
+        const valorInventario = AppData.insumos.reduce((sum, i) => sum + (i.stock * i.costo), 0);
+        
+        document.getElementById('statAnimales').textContent = totalAnimales;
+        document.getElementById('kpiInventario').textContent = totalAnimales;
+        document.getElementById('badgeAnimales').textContent = totalAnimales;
+        
+        const pesoTotal = AppData.animales.reduce((sum, a) => sum + a.pesoActual, 0);
+        const pesoPromedio = totalAnimales > 0 ? (pesoTotal / totalAnimales).toFixed(0) : 0;
+        document.getElementById('kpiPeso').innerHTML = `${pesoPromedio}<span style="font-size:16px">kg</span>`;
+    },
+    
+    initCharts() {
+        // Gráfico de consumo usando ChartManager
+        const consumoData = ChartManager.getConsumoSemanalData();
+        this.charts.consumo = ChartManager.createLineChart(
+            'consumoChart',
+            consumoData.labels,
+            consumoData.datasets,
+            { showLegend: false }
+        );
+        
+        // Gráfico de distribución por razas
+        const razasData = ChartManager.getRazasDistributionData();
+        this.charts.razas = ChartManager.createDoughnutChart(
+            'razasChart',
+            razasData.labels,
+            razasData.data,
+            { legendPosition: 'right' }
+        );
+    }
+};

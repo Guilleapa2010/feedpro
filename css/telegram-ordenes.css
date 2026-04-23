@@ -1,0 +1,139 @@
+/* ─── Estilos para órdenes de Telegram ─── */
+
+.ordenes-telegram-section {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.ordenes-telegram-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #495057;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#ordenes-telegram {
+  min-height: 80px;
+}
+
+.telegram-empty {
+  text-align: center;
+  padding: 24px;
+  color: #868e96;
+}
+
+.telegram-empty span {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.telegram-empty p {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+}
+
+.telegram-empty small {
+  font-size: 12px;
+  color: #adb5bd;
+}
+
+.telegram-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #fff3cd;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.telegram-live {
+  color: #28a745;
+  animation: pulse 2s infinite;
+  margin-left: auto;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.telegram-ordenes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.telegram-orden {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border-left: 4px solid #17a2b8;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.telegram-orden-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.telegram-orden-info strong {
+  font-size: 16px;
+  color: #212529;
+}
+
+.telegram-orden-info span {
+  font-size: 14px;
+  color: #495057;
+  font-weight: 500;
+}
+
+.telegram-orden-info small {
+  font-size: 12px;
+  color: #868e96;
+}
+
+.telegram-orden-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-telegram {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-telegram-done {
+  background: #28a745;
+  color: white;
+}
+
+.btn-telegram-done:hover {
+  background: #218838;
+}
+
+.btn-telegram-cancel {
+  background: #dc3545;
+  color: white;
+  padding: 8px 12px;
+}
+
+.btn-telegram-cancel:hover {
+  background: #c82333;
+}

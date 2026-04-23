@@ -1,0 +1,190 @@
+/* ============================================
+   ESTILOS ESPECÍFICOS PARA SECCIÓN DE GASTOS
+   ============================================ */
+
+/* Lista de categorías de gastos */
+.gastos-categoria-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.gastos-categoria-list > div:hover {
+    background: #f5f5f5;
+}
+
+/* Badges para tipos de costo */
+.badge-estructura {
+    background: #fff3e0;
+    color: #e65100;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-operativo {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Tabs de gastos */
+.gastos-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.gastos-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.gastos-tab:hover {
+    background: #f5f5f5;
+}
+
+.gastos-tab.active {
+    border-bottom-color: #4caf50;
+    color: #2e7d32;
+}
+
+/* Cards de resumen */
+.gasto-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.gasto-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Indicador de tipo en tabla */
+.tipo-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.tipo-indicator.estructura {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.tipo-indicator.operativo {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* Modal de gastos */
+.modal-gasto-form .form-section {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-gasto-form .form-section h4 {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #666;
+}
+
+/* Selector de categorías con iconos */
+.categoria-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.categoria-option .icono {
+    font-size: 20px;
+}
+
+/* Gráficos de gastos */
+#gastosTipoChart,
+#gastosMensualChart {
+    max-height: 200px;
+}
+
+/* Filtros de gastos */
+.filtros-gastos {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Barra de progreso para distribución */
+.distribucion-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.distribucion-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.distribucion-bar-fill.estructura {
+    background: #ff9800;
+}
+
+.distribucion-bar-fill.operativo {
+    background: #4caf50;
+}
+
+/* Totales destacados */
+.gasto-total-box {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.gasto-total-box .monto {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.gasto-total-box .label {
+    font-size: 14px;
+    opacity: 0.9;
+    text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gastos-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .gastos-tab {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .gastos-categoria-list {
+        max-height: 200px;
+    }
+}

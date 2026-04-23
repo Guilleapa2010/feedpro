@@ -1,0 +1,103 @@
+:root {
+  /* === PALETA MODERNA (estilo FeedPro v1) === */
+  --bg: #F5F1EA;
+  --surface: #FFFFFF;
+  --surface-2: #FAF6EE;
+  --surface-3: #EFE8DB;
+  --ink: #201A14;
+  --ink-2: #5A4A3B;
+  --ink-3: #8B7A67;
+  --border: #E6DCCB;
+  --border-strong: #CFC1A9;
+
+  --brand: #6B4423;
+  --brand-ink: #3E2816;
+  --brand-soft: #EDE0CB;
+
+  --accent: #C77D2B;
+  --accent-soft: #FBEAD0;
+
+  --green: #4A7C59;
+  --green-soft: #DDEBDF;
+  --red: #B23A48;
+  --red-soft: #F5D9DC;
+  --yellow: #D9A21B;
+  --yellow-soft: #FAECC1;
+  --blue: #3F6FA1;
+  --blue-soft: #DDE7F2;
+  --purple: #7B5E9E;
+
+  /* === MAPEO COMPATIBILIDAD VIEJA === */
+  --primary: var(--brand);
+  --primary-dark: var(--brand-ink);
+  --primary-light: #8B6239;
+  --secondary: #A0522D;
+  --accent-dark: #B8935F;
+  --dark: var(--ink);
+  --light: var(--brand-soft);
+
+  --field-green: var(--green);
+  --field-brown: #704214;
+  --earth: #8B7355;
+  --wheat: #DEB887;
+
+  --success: var(--green);
+  --danger: var(--red);
+  --warning: var(--yellow);
+  --info: var(--blue);
+
+  --bg-card: var(--surface);
+  --bg-hover: var(--surface-2);
+
+  /* === SOMBRAS SUAVES === */
+  --shadow: 0 4px 20px rgba(40,24,8,0.06), 0 1px 2px rgba(40,24,8,0.04);
+  --shadow-hover: 0 8px 30px rgba(40,24,8,0.08), 0 2px 4px rgba(40,24,8,0.04);
+  --shadow-lg: 0 12px 40px rgba(40,24,8,0.10);
+  --shadow-toast: 0 10px 40px rgba(40,24,8,0.12);
+
+  --border-light: var(--border);
+  --border-medium: var(--border-strong);
+  --border-dark: var(--border-strong);
+
+  /* === TIPOGRAFÍA === */
+  --font-main: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 22px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 32px;
+  --font-size-5xl: 42px;
+
+  /* === ESPACIADO === */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 30px;
+
+  /* === LAYOUT === */
+  --sidebar-width: 260px;
+  --header-height: auto;
+  --border-radius-sm: 8px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-2xl: 18px;
+
+  /* === TRANSICIONES === */
+  --transition-fast: 0.12s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.4s ease;
+
+  /* === Z-INDEX === */
+  --z-sidebar: 1000;
+  --z-modal: 2000;
+  --z-toast: 3000;
+  --z-menu-toggle: 1001;
+}
