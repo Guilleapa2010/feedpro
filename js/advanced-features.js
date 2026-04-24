@@ -70,10 +70,6 @@ const ThemeManager = {
                     background: var(--bg-secondary) !important;
                 }
                 
-                .weather-widget {
-                    background: linear-gradient(135deg, #2d3561 0%, #4a4b8c 100%) !important;
-                }
-                
                 .alert {
                     opacity: 0.9;
                 }
@@ -163,7 +159,7 @@ const HelpSystem = {
                       'Elemento';
         
         const ayudas = {
-            'Dashboard': 'Vista general del feedlot con indicadores clave, clima, alertas y actividad reciente.',
+            'Dashboard': 'Vista general del feedlot con indicadores clave, alertas y actividad reciente.',
             'Animales': 'Gestión completa del inventario: entradas, salidas, movimientos y fichas individuales.',
             'Sanidad': 'Control de tratamientos, calendario sanitario y seguimiento de enfermos.',
             'Insumos': 'Inventario de alimentos, gestión de proveedores y órdenes de compra.',

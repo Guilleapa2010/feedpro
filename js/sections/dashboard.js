@@ -19,29 +19,6 @@ const DashboardSection = {
                 </button>
             </div>
 
-            <!-- WIDGET CLIMA -->
-            <div class="weather-widget" id="weatherWidget">
-                <div class="weather-main">
-                    <div class="weather-icon">☀️</div>
-                    <div class="weather-temp">--°C</div>
-                    <div class="weather-desc">Cargando...</div>
-                </div>
-                <div class="weather-details">
-                    <div class="weather-item">
-                        <span class="weather-label">💨 Viento</span>
-                        <span class="weather-value" id="windSpeed">-- km/h</span>
-                    </div>
-                    <div class="weather-item">
-                        <span class="weather-label">💧 Humedad</span>
-                        <span class="weather-value" id="humidity">--%</span>
-                    </div>
-                    <div class="weather-item">
-                        <span class="weather-label">🌡️ THI</span>
-                        <span class="weather-value" id="thi">--</span>
-                    </div>
-                </div>
-            </div>
-
             <!-- KPIs PRINCIPALES -->
             <div class="grid-4">
                 <div class="kpi-card">
@@ -255,7 +232,6 @@ const DashboardSection = {
             </div>
         `;
         
-        this.loadWeather();
         this.updateKPIs();
         this.initCharts();
         this.renderInsumos();
@@ -264,54 +240,6 @@ const DashboardSection = {
         this.renderActividad();
     },
 
-    // Cargar datos del clima
-    async loadWeather() {
-        try {
-            // Intentar obtener ubicación del usuario
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(async (pos) => {
-                    await this.fetchWeather(pos.coords.latitude, pos.coords.longitude);
-                }, () => {
-                    // Si no hay permiso, usar Buenos Aires como default
-                    this.fetchWeather(-34.6037, -58.3816);
-                });
-            } else {
-                this.fetchWeather(-34.6037, -58.3816);
-            }
-        } catch (e) {
-            console.error('Error cargando clima:', e);
-        }
-    },
-
-    // Obtener datos del clima (simulado o real)
-    async fetchWeather(lat, lon) {
-        // Simulación de datos del clima
-        const weatherData = {
-            temp: 28 + Math.floor(Math.random() * 10),
-            description: 'Soleado',
-            icon: '☀️',
-            wind: 12 + Math.floor(Math.random() * 15),
-            humidity: 45 + Math.floor(Math.random() * 30),
-            thi: 68 + Math.floor(Math.random() * 10)
-        };
-
-        const widget = document.getElementById('weatherWidget');
-        if (widget) {
-            widget.querySelector('.weather-temp').textContent = `${weatherData.temp}°C`;
-            widget.querySelector('.weather-desc').textContent = weatherData.description;
-            widget.querySelector('.weather-icon').textContent = weatherData.icon;
-            document.getElementById('windSpeed').textContent = `${weatherData.wind} km/h`;
-            document.getElementById('humidity').textContent = `${weatherData.humidity}%`;
-            document.getElementById('thi').textContent = weatherData.thi;
-            
-            // Color según THI
-            const thiEl = document.getElementById('thi');
-            if (weatherData.thi > 78) thiEl.style.color = 'var(--danger)';
-            else if (weatherData.thi > 72) thiEl.style.color = 'var(--warning)';
-            else thiEl.style.color = 'var(--success)';
-        }
-    },
-    
     updateKPIs() {
         const animalesActivos = AppData.animales.filter(a => a.estado !== 'vendido' && a.estado !== 'muerto');
         const totalAnimales = animalesActivos.length;
@@ -815,59 +743,6 @@ style.textContent = `
     @keyframes slideIn {
         from { opacity: 0; transform: translateX(-20px); }
         to { opacity: 1; transform: translateX(0); }
-    }
-    
-    .weather-widget {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 12px;
-        padding: 20px;
-        color: white;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    }
-    
-    .weather-main {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-    
-    .weather-icon {
-        font-size: 48px;
-    }
-    
-    .weather-temp {
-        font-size: 42px;
-        font-weight: 700;
-    }
-    
-    .weather-desc {
-        font-size: 16px;
-        opacity: 0.9;
-    }
-    
-    .weather-details {
-        display: flex;
-        gap: 25px;
-    }
-    
-    .weather-item {
-        text-align: center;
-    }
-    
-    .weather-label {
-        display: block;
-        font-size: 12px;
-        opacity: 0.8;
-        margin-bottom: 5px;
-    }
-    
-    .weather-value {
-        font-size: 18px;
-        font-weight: 600;
     }
     
     .ocupacion-item:last-child {
