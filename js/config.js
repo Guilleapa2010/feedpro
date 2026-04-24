@@ -4,6 +4,17 @@
 
 const CONFIG = {
     version: '2.0.0',
+    
+    // Supabase Configuration
+    // 1. Creá tu proyecto en https://supabase.com
+    // 2. Andá a Project Settings → API
+    // 3. Copiá la URL y la anon key acá abajo
+    supabase: {
+        url: '',           // Pegá acá: https://xxxxxx.supabase.co
+        anonKey: '',       // Pegá acá: eyJ...
+        enabled: false     // Cambiá a true cuando configures las credenciales
+    },
+    
     maxAnimales: 5000,
     paginacion: 20,
     capacidadMixer: 5000, // kg

@@ -24,6 +24,9 @@ const AdministracionSection = {
                 <button class="tab-btn ${this.vistaActual === 'datos' ? 'active' : ''}" onclick="AdministracionSection.cambiarVista('datos')">
                     💾 Datos
                 </button>
+                <button class="tab-btn ${this.vistaActual === 'nube' ? 'active' : ''}" onclick="AdministracionSection.cambiarVista('nube')">
+                    ☁️ Nube
+                </button>
                 <button class="tab-btn ${this.vistaActual === 'acerca' ? 'active' : ''}" onclick="AdministracionSection.cambiarVista('acerca')">
                     ℹ️ Acerca de
                 </button>
@@ -51,6 +54,8 @@ const AdministracionSection = {
                 return this.renderParametros();
             case 'datos':
                 return this.renderDatos();
+            case 'nube':
+                return this.renderNube();
             case 'acerca':
                 return this.renderAcerca();
             default:
@@ -372,6 +377,86 @@ const AdministracionSection = {
                         <p style="color: #666; font-size: 12px; margin-top: 10px;">
                             Carga animales, insumos y tratamientos de prueba para probar el sistema.
                         </p>
+                    </div>
+                </div>
+            </div>
+        `;
+    },
+
+    // ============ VISTA NUBE (SUPABASE) ============
+    renderNube() {
+        const isConnected = SyncManager.isOnline();
+        const statusColor = isConnected ? '#28a745' : '#dc3545';
+        const statusText = isConnected ? 'Conectado a Supabase' : 'Modo Offline - No configurado';
+        
+        return `
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">☁️ Estado de Sincronización</h3>
+                    </div>
+                    <div style="padding: 20px;">
+                        <div style="background: ${statusColor}15; border-left: 4px solid ${statusColor}; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                            <strong style="color: ${statusColor};">${isConnected ? '🟢' : '🔴'} ${statusText}</strong>
+                            <p style="margin: 5px 0 0 0; font-size: 13px; color: #666;">
+                                ${isConnected 
+                                    ? 'Tus datos se sincronizan automáticamente con Supabase.' 
+                                    : 'Para conectar con Supabase, necesitás configurar las credenciales en el archivo js/config.js'}
+                            </p>
+                        </div>
+                        
+                        <h4 style="margin-bottom: 15px;">Acciones de Sincronización</h4>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <button class="btn btn-primary" onclick="SyncManager.syncAllToCloud()" ${!isConnected ? 'disabled style="opacity:0.5"' : ''}>
+                                🚀 Subir todos los datos a la Nube
+                            </button>
+                            <button class="btn btn-secondary" onclick="SyncManager.setupDatabase()" ${!isConnected ? 'disabled style="opacity:0.5"' : ''}>
+                                🛠️ Crear tablas en Supabase
+                            </button>
+                        </div>
+                        
+                        ${!isConnected ? `
+                        <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px;">
+                            <h4 style="margin-bottom: 10px;">📋 Cómo conectar Supabase:</h4>
+                            <ol style="font-size: 13px; padding-left: 20px; line-height: 1.8;">
+                                <li>Andá a <a href="https://supabase.com" target="_blank">supabase.com</a> y creá una cuenta</li>
+                                <li>Creá un nuevo proyecto</li>
+                                <li>Andá a <strong>Project Settings → API</strong></li>
+                                <li>Copiá la <strong>URL</strong> y la <strong>anon key</strong></li>
+                                <li>Abrí el archivo <code>js/config.js</code> en este proyecto</li>
+                                <li>Pegá los datos en <code>CONFIG.supabase.url</code> y <code>CONFIG.supabase.anonKey</code></li>
+                                <li>Cambiá <code>enabled: false</code> a <code>enabled: true</code></li>
+                                <li>Recargá la página</li>
+                            </ol>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">📊 Información Técnica</h3>
+                    </div>
+                    <div style="padding: 20px;">
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <p><strong>URL de Supabase:</strong></p>
+                            <code style="font-size: 12px; word-break: break-all;">${CONFIG.supabase.url || '(No configurada)'}</code>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <p><strong>Anon Key:</strong></p>
+                            <code style="font-size: 12px; word-break: break-all;">${CONFIG.supabase.anonKey ? CONFIG.supabase.anonKey.substring(0, 20) + '...' : '(No configurada)'}</code>
+                        </div>
+                        
+                        <h4 style="margin-bottom: 10px;">Datos locales listos para sync:</h4>
+                        <ul style="font-size: 14px; line-height: 2;">
+                            <li>🐄 Animales: <strong>${(AppData.animales || []).length}</strong></li>
+                            <li>🏠 Corrales: <strong>${(AppData.corrales || []).length}</strong></li>
+                            <li>🌾 Insumos: <strong>${(AppData.insumos || []).length}</strong></li>
+                            <li>🍽️ Dietas: <strong>${(AppData.dietas || []).length}</strong></li>
+                            <li>💉 Sanidad: <strong>${(AppData.tratamientos || []).length}</strong></li>
+                            <li>👤 Personal: <strong>${(AppData.personal || []).length}</strong></li>
+                            <li>💰 Gastos: <strong>${(AppData.gastos || []).length}</strong></li>
+                        </ul>
                     </div>
                 </div>
             </div>
