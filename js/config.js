@@ -10,9 +10,9 @@ const CONFIG = {
     // 2. Andá a Project Settings → API
     // 3. Copiá la URL y la anon key acá abajo
     supabase: {
-        url: '',           // Pegá acá: https://xxxxxx.supabase.co
-        anonKey: '',       // Pegá acá: eyJ...
-        enabled: false     // Cambiá a true cuando configures las credenciales
+        url: 'https://eceqvbogfmnsojututrr.supabase.co',
+        anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjZXF2Ym9nZm1uc29qdXR1dHJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTY1NjMsImV4cCI6MjA5MjQ3MjU2M30.Drl20jE2ZoXCpYZR5MNFB7j0g6SmMJ-r3uWxmfbVDhk',
+        enabled: true
     },
     
     maxAnimales: 5000,
