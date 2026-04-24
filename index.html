@@ -7,9 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<link rel="stylesheet" href="css/telegram-ordenes.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="css/telegram-ordenes.css">
     
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -27,6 +26,120 @@
     <link rel="stylesheet" href="css/gastos.css">
     <link rel="stylesheet" href="css/proyeccion.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /*  ESTILOS SUMINISTRO  */
+        .suministro-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+        .suministro-section h2 {
+            margin: 0 0 15px 0;
+            color: #495057;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .suministro-empty {
+            text-align: center;
+            padding: 30px 20px;
+            color: #6c757d;
+        }
+        .suministro-empty span {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .suministro-empty p {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+        }
+        .suministro-empty small {
+            font-size: 12px;
+            color: #adb5bd;
+        }
+        .suministro-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .suministro-header strong {
+            color: #495057;
+            font-size: 14px;
+        }
+        .suministro-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .suministro-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .suministro-card.pendiente {
+            border-left-color: #ffc107;
+        }
+        .suministro-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .suministro-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .suministro-info strong {
+            color: #212529;
+            font-size: 15px;
+        }
+        .suministro-info span {
+            color: #6c757d;
+            font-size: 13px;
+        }
+        .suministro-progress {
+            background: #e9ecef;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #495057;
+            white-space: nowrap;
+        }
+        .suministro-corrales {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .corral-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .corral-tag.done {
+            background: #d4edda;
+            color: #155724;
+        }
+        .corral-tag.pending {
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
     <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
@@ -48,6 +161,7 @@
                         <span class="nav-text">Dashboard</span>
                     </a>
                 </li>
+                <button class="nav-btn" onclick="showSection('suministro')"> Suministro</button>
 
                 <!-- OPERACIONES DIARIAS -->
                 <li class="nav-separator" data-label="Operaciones"></li>
@@ -253,7 +367,37 @@
             <section id="sanidad" class="section hidden"></section>
             <section id="insumos" class="section hidden"></section>
             <section id="dietas" class="section hidden"></section>
-            <section id="suministro" class="section hidden"></section>
+            <!-- SUMINISTRO -->
+        <section id="suministro" class="section">
+            <div class="card">
+                <h2> Sesiones de Suministro (Telegram)</h2>
+                <div class="suministro-section">
+                    <div id="sesiones-suministro">
+                        <div class="suministro-empty">
+                            <span></span>
+                            <p>Cargando sesiones...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2> Estado del Mixer</h2>
+                <div class="grid-2">
+                    <div class="stat-card blue">
+                        <div class="stat-value" id="sesionesHoy">0</div>
+                        <div class="stat-label">Sesiones hoy</div>
+                    </div>
+                    <div class="stat-card green">
+                        <div class="stat-value" id="corralesCompletados">0</div>
+                        <div class="stat-label">Corrales entregados</div>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <strong> Cómo funciona:</strong> El mixer usa /suministro en Telegram y los datos aparecen acá automáticamente.
+                </div>
+            </div>
+        </section>
             <section id="corrales" class="section hidden"></section>
             <section id="comercializacion" class="section hidden"></section>
             <section id="personal" class="section hidden"></section>
@@ -273,6 +417,126 @@
     <!-- Scripts -->
     <!-- SheetJS para importar/exportar Excel -->
     <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    
+    <script>
+        // ==================== SUMINISTRO (Telegram Bot) ====================
+        class SuministroApp {
+            constructor() {
+                this.supabaseUrl = 'https://eceqvbogfmnsojututrr.supabase.co';
+                this.supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjZXF2Ym9nZm1uc29qdXR1dHJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4OTY1NjMsImV4cCI6MjA5MjQ3MjU2M30.Drl20jE2ZoXCpYZR5MNFB7j0g6SmMJ-r3uWxmfbVDhk';
+                this.supabase = null;
+                this.sesiones = [];
+                this.intervalId = null;
+            }
+
+            init() {
+                if (typeof supabase === 'undefined') {
+                    console.warn('Supabase no cargado');
+                    return;
+                }
+                this.supabase = supabase.createClient(this.supabaseUrl, this.supabaseKey);
+                this.cargarSesiones();
+                this.intervalId = setInterval(() => this.cargarSesiones(), 15000);
+            }
+
+            async cargarSesiones() {
+                if (!this.supabase) return;
+                const hoy = new Date();
+                hoy.setHours(0, 0, 0, 0);
+
+                const { data, error } = await this.supabase
+                    .from('sesiones_suministro')
+                    .select('*')
+                    .gte('created_at', hoy.toISOString())
+                    .order('created_at', { ascending: false });
+
+                if (error) {
+                    console.error('Error cargando sesiones:', error);
+                    return;
+                }
+
+                this.sesiones = data || [];
+                this.renderizar();
+                this.actualizarStats();
+            }
+
+            renderizar() {
+                const cont = document.getElementById('sesiones-suministro');
+                if (!cont) return;
+
+                if (this.sesiones.length === 0) {
+                    cont.innerHTML = `
+                        <div class="suministro-empty">
+                            <span></span>
+                            <p>No hay sesiones de suministro hoy</p>
+                            <small>El mixer usa /suministro en Telegram</small>
+                        </div>`;
+                    return;
+                }
+
+                let html = `
+                    <div class="suministro-header">
+                        <span></span>
+                        <strong>${this.sesiones.length} sesión${this.sesiones.length > 1 ? 'es' : ''} hoy</strong>
+                    </div>
+                    <div class="suministro-list">
+                `;
+
+                this.sesiones.forEach(sesion => {
+                    const hora = new Date(sesion.created_at).toLocaleTimeString('es-UY', {
+                        hour: '2-digit', minute: '2-digit'
+                    });
+                    const estado = sesion.estado === 'completada' ? '' : '';
+                    const corrales = sesion.corrales_entregados || [];
+                    const distribucion = sesion.distribucion || [];
+                    const entregados = Array.isArray(corrales) ? corrales.length : 0;
+                    const total = Array.isArray(distribucion) ? distribucion.length : 0;
+
+                    html += `
+                        <div class="suministro-card ${sesion.estado}">
+                            <div class="suministro-main">
+                                <div class="suministro-info">
+                                    <strong>${estado} ${sesion.dieta_nombre || 'Sin dieta'}</strong>
+                                    <span> ${sesion.turno || '-'}   ${sesion.total_preparar || 0} kg fresco</span>
+                                    <span> ${sesion.operador || 'Mixer'}   ${hora}</span>
+                                </div>
+                                <div class="suministro-progress">
+                                    <span>${entregados}/${total} corrales</span>
+                                </div>
+                            </div>
+                            <div class="suministro-corrales">
+                                ${distribucion.map(d => {
+                                    const ok = corrales.includes(d.corral);
+                                    return `<span class="corral-tag ${ok ? 'done' : 'pending'}">${d.corral} ${ok ? '' : ''}</span>`;
+                                }).join('')}
+                            </div>
+                        </div>`;
+                });
+
+                html += '</div>';
+                cont.innerHTML = html;
+            }
+
+            actualizarStats() {
+                const totalSesiones = this.sesiones.length;
+                let totalCorrales = 0;
+                this.sesiones.forEach(s => {
+                    const c = s.corrales_entregados || [];
+                    totalCorrales += Array.isArray(c) ? c.length : 0;
+                });
+                const elSesiones = document.getElementById('sesionesHoy');
+                const elCorrales = document.getElementById('corralesCompletados');
+                if (elSesiones) elSesiones.textContent = totalSesiones;
+                if (elCorrales) elCorrales.textContent = totalCorrales;
+            }
+        }
+
+        const suministroApp = new SuministroApp();
+
+        function cargarSuministro() {
+            suministroApp.cargarSesiones();
+        }
+    </script>
     
     <script src="js/config.js"></script>
     <script src="js/data.js"></script>

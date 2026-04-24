@@ -43,6 +43,9 @@ function inicializarApp() {
         TelegramOrdenesApp.init();
     }
     
+    // Inicializar suministro desde Telegram
+    suministroApp.init();
+    
     // 7. Renderizar sección inicial
     const hash = window.location.hash.replace('#', '');
     if (hash && Navigation.titles[hash]) {

@@ -76,6 +76,8 @@ const Navigation = {
             AppState.currentSection = sectionId;
         }
         
+        if (sectionId === 'suministro') cargarSuministro();
+        
         // Actualizar navegación activa
         document.querySelectorAll('.nav-link').forEach(link => {
             link.classList.remove('active');
